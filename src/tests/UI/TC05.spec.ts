@@ -13,8 +13,9 @@ test('Verify the tooltip', async ({ page, baseURL }) => {
       await widgets.clickToolTipsTool();
     });
 
-    await test.step('Run progress bar and validate it reached 100%', async () => {
-      
+    await test.step('Hoover over the button in Tool Tips menu', async () => {
+      await widgets.hooverOverToolTip();
+      await widgets.validateHoverToolTipByAriaLabel();
     });
 
 });

@@ -18,4 +18,12 @@ export class WidgetsPage extends NavigationBase {
     async validateProgressBarLoadedByText(text: string) {
         await this.isElementPresentByText(WidgetsPageObject.LOADED_PROGRESS_BAR, text);
     }
+
+    async hooverOverToolTip() {
+        await this.hover(WidgetsPageObject.TOOL_TIP_BUTTON);
+    }
+
+    async validateHoverToolTipByAriaLabel() {
+        await this.isElementPresent(WidgetsPageObject.HOVER_TOOL_TIP_ELEMENT)
+    }
 }
