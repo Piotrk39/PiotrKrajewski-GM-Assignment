@@ -1,7 +1,7 @@
-import { expect, Page, selectors } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class NavigationBase {
-  private page: Page;
+  public page: Page;
 
   constructor(page: Page) {
     this.page = page;
@@ -13,6 +13,15 @@ export class NavigationBase {
     } else {
       await this.click(locator);
     }
+  }
+
+  async pressCmdandMinus() {
+    await this.page.keyboard.down('Meta');
+    await this.page.keyboard.press('-');
+    await this.page.keyboard.press('-');
+    await this.page.keyboard.press('-');
+    await this.page.keyboard.press('-');
+    await this.page.keyboard.press('-');
   }
 
   async hover(locator: string) {

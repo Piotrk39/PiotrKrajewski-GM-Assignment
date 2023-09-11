@@ -28,4 +28,12 @@ export class TestUtil {
     }
     return randomstring;
   }
+
+  static async uploadFile(page, locator, fileName) {
+    const [fileChooser] = await Promise.all([
+      page.waitForEvent('filechooser'),
+      page.click(locator)
+    ]);
+    await fileChooser.setFiles(fileName);
+  }
 }
