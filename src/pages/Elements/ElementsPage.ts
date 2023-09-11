@@ -23,4 +23,29 @@ export class ElementsPage extends NavigationBase {
     async clickSubmitButton() {
         await this.click(ElementsPageObject.SUBMIT_BUTTON);
     }
+
+    async typeToSearch(query: string) {
+        await this.type(ElementsPageObject.SEARCH_BOX, query);
+    }
+
+    async verifyRow(rowIndex, { firstName, lastName, email, age, salary, department}) {
+        if (firstName !== undefined) {
+            await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 1), firstName);
+        }
+        if (lastName !== undefined) {
+            await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 2), lastName);
+        }
+        if (age !== undefined) {
+            await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 3), age);
+        }
+        if (email !== undefined) {
+            await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 4), email);
+        }
+        if (salary !== undefined) {
+            await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 5), salary);
+        }
+        if (department !== undefined) {
+            await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 6), department);
+        }
+    }
 }

@@ -72,32 +72,15 @@ export class NavigationBase {
     }
   }
 
-  async waitForElementToHaveText(selector: string, text: string) {
-    await this.waitForElementDisplayed(selector);
-    let i = 0;
-    let content = '';
-    while (text !== content && i < 10) {
-      await this.waitForTimeout(500);
-      let content = await this.getElementText(selector);
-      i++;
-    }
-    if (text === content) {
-      console.log(`Element with text "${content}" was displayed`);
-    } else {
-      throw new Error(`Element ${selector} did not contain text "${text}", instead it contained "${content}"`);
-    }
-  }
-
   async waitForElementToContainText(selector: string, text: string) {
     await this.waitForElementDisplayed(selector);
     let i = 0;
-    let content = '';
-    while (!content.includes(text) && i < 10) {
+    let content = await this.getElementText(selector);
+    while (text !== content && i < 10) {
       await this.waitForTimeout(500);
-      let content = await this.getElementText(selector);
       i++;
     }
-    if (content.includes(text)) {
+    if (text === content) {
       console.log(`Element with text "${content}" was displayed`);
     } else {
       throw new Error(`Element ${selector} did not contain text "${text}", instead it contained "${content}"`);

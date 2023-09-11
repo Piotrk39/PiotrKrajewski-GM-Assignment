@@ -7,12 +7,12 @@ test('Verify user can enter new data into the table', async ({ page, baseURL }) 
     const common = new CommonSteps(page);
     const elements = new ElementsPage(page);
 
-    const firstName = 'Piotr' + await TestUtil.generateRandomNumber(5);
-    const lastName = 'Krajewski' + await TestUtil.generateRandomNumber(5);
-    const email = await TestUtil.generateRandomString(6)+ '@gmail.com';
-    const age = await TestUtil.generateRandomNumber(2);
-    const salary = await TestUtil.generateRandomNumber(5);
-    const department = 'Sales' + await TestUtil.generateRandomNumber(5);
+    const firstName = 'Alden';
+    const lastName = 'Cantrell';
+    const email = 'test@test.com';
+    const age = '30';
+    const salary = '12345';
+    const department = 'QA';
 
 
     await test.step('Navigate to Elements page', async () => {
@@ -29,5 +29,19 @@ test('Verify user can enter new data into the table', async ({ page, baseURL }) 
       await elements.fillInRegistrationForm(firstName, lastName, email, age, salary, department);
       console.log('Submitting registration form...');
       await elements.clickSubmitButton();
+    });
+
+    await test.step('Validate new employee', async () => {
+      console.log('Searching for new employee...');
+      await elements.typeToSearch(department);
+      console.log('Validating new employee row...');
+      await elements.verifyRow(1, {
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        email: email,
+        salary: salary,
+        department: department
+      })
     })
 });

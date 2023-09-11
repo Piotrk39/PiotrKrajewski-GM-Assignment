@@ -11,4 +11,12 @@ export class ElementsPageObject {
     static SALARY = "#salary";
     static DEPARTMENT = "#department";
     static SUBMIT_BUTTON = '#submit';
+
+    //TABLE ELEMENTS
+    static SEARCH_BOX = "#searchBox";
+    
+    static getCellValue(row, column) {
+        return `(//div[@role="rowgroup"]/div[1]/div[${column}])[${row}]`;
+    }
+
 }
