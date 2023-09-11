@@ -19,6 +19,11 @@ export class NavigationBase {
     await this.page.hover(locator);
   }
 
+  async selectDropdownList(dropdown: string, value: string) {
+    await this.page.waitForSelector(dropdown);
+    await this.page.selectOption(dropdown, {label: value});
+}
+
   async type(locator: string, text: string) {
     await this.page.waitForSelector(locator);
     await this.page.fill(locator, text);
@@ -92,7 +97,7 @@ export class NavigationBase {
     }
   }
 
-  async isImageBroken(selector) {
+  async isImageBroken(selector: string) {
     const imgSelector = selector;
 
      // Wait for the image to load or for a timeout (adjust the timeout as needed)
