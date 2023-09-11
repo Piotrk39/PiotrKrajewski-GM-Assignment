@@ -7,6 +7,14 @@ export class ElementsPage extends NavigationBase {
         await this.click(ElementsPageObject.WEBT_TABLES_LIST_ELEMENT);
     }
 
+    async clickBrokenLinksMenu() {
+        await this.click(ElementsPageObject.BROKEN_LINKS_IMAGES_LIST_ELEMENT);
+    }
+
+    async validateImage(selector) {
+        await this.isImageBroken(selector);
+    }
+
     async clickAddNewRecordButton() {
         await this.click(ElementsPageObject.ADD_NEW_RECORD_BUTTON);
     }

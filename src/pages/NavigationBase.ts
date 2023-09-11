@@ -1,4 +1,4 @@
-import { expect, Page } from '@playwright/test';
+import { expect, Page, selectors } from '@playwright/test';
 
 export class NavigationBase {
   private page: Page;
@@ -90,5 +90,26 @@ export class NavigationBase {
     } else {
       throw new Error(`Element ${selector} did not contain text "${text}", instead it contained "${content}"`);
     }
+  }
+
+  async isImageBroken(selector) {
+    const imgSelector = selector;
+
+     // Wait for the image to load or for a timeout (adjust the timeout as needed)
+    const imageHandle = await this.page.waitForSelector(imgSelector);
+
+    // Ensure the image element exists on the page
+    expect(imageHandle).not.toBeNull();
+
+    // Get the 'naturalWidth' and 'naturalHeight' properties of the image
+    const naturalWidth = await imageHandle.evaluate((img: HTMLImageElement) => img.naturalWidth);
+    const naturalHeight = await imageHandle.evaluate((img: HTMLImageElement) => img.naturalHeight);
+
+    // Check if both 'naturalWidth' and 'naturalHeight' are 0, indicating a broken image
+    const isImageBroken = naturalWidth === 0 && naturalHeight === 0;
+
+    // Assert whether the image is broken
+    expect(isImageBroken).toBe(true);
+    console.log("Image is broken!");
   }
 }
