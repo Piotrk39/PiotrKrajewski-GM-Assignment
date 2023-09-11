@@ -138,4 +138,8 @@ export class NavigationBase {
     expect(isImageBroken).toBe(true);
     console.log("Image is broken!");
   }
+
+  async dragAndDrop(locatorDrag, locatorDrop) {
+    await this.page.locator(locatorDrag).dragTo(this.page.locator(locatorDrop));
+  }
 }
