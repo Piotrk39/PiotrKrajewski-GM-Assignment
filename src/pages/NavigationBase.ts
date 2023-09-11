@@ -106,10 +106,22 @@ export class NavigationBase {
     }
   }
 
+  async isElementPresentByText(locator, text) {
+    const textContent = await this.getElementText(locator);
+
+    if(textContent === text) {
+        console.log(`Elemnt with text ${text} was presnt`)
+        return;
+      }
+      else {
+        throw new Error(`No mathing element with text: ${text} instead element containing: ${textContent} was found`);
+      }
+}
+
   async isImageBroken(selector: string) {
     const imgSelector = selector;
 
-     // Wait for the image to load or for a timeout (adjust the timeout as needed)
+    // Wait for the image to load or for a timeout (adjust the timeout as needed)
     const imageHandle = await this.page.waitForSelector(imgSelector);
 
     // Ensure the image element exists on the page
