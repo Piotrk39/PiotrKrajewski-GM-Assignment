@@ -30,6 +30,11 @@ export class NavigationBase {
     await this.page.click(locator);
   }
 
+  async doubleClick(locator: string) {
+    await this.page.waitForSelector(locator);
+    await this.page.dblclick(locator);
+  }
+
   async isElementPresent(locator: string) {
     return await this.page.isVisible(locator);
   }

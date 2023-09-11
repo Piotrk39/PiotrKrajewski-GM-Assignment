@@ -14,6 +14,9 @@ test('Verify user can enter new data into the table', async ({ page, baseURL }) 
     const salary = '12345';
     const department = 'QA';
 
+    const newFirstName = 'Gerimedica';
+    const newLastName = 'BV';
+
 
     await test.step('Navigate to Elements page', async () => {
       console.log('Navigating to Elements page menu...');
@@ -42,6 +45,25 @@ test('Verify user can enter new data into the table', async ({ page, baseURL }) 
         email: email,
         salary: salary,
         department: department
-      })
-    })
+      });
+    });
+
+    await test.step('Edit new employee entry', async () => {
+      console.log('Clicking edit button...');
+      await elements.clickEditButton();
+      console.log('Filling in the registartion form...');
+      await elements.editEntryFullName(newFirstName, newLastName);
+      console.log('Submitting registration form...');
+      await elements.clickSubmitButton();
+      console.log('Validate eddited row...');
+      await elements.typeToSearch(department);
+      await elements.verifyRow(1, {
+        firstName: newFirstName,
+        lastName: newLastName,
+        age: age,
+        email: email,
+        salary: salary,
+        department: department
+      });
+    });
 });

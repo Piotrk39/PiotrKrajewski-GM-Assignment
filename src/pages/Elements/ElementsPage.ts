@@ -20,6 +20,17 @@ export class ElementsPage extends NavigationBase {
         await this.type(ElementsPageObject.DEPARTMENT, department);
     }
 
+    async editEntryFullName(firstName: string, lastName: string) {
+        await this.doubleClick(ElementsPageObject.FIRST_NAME);
+        await this.type(ElementsPageObject.FIRST_NAME, firstName);
+        await this.doubleClick(ElementsPageObject.LAST_NAME);
+        await this.type(ElementsPageObject.LAST_NAME, lastName);
+    }
+
+    async clickEditButton() {
+        await this.click(ElementsPageObject.EDIT_BUTTON);
+    }
+
     async clickSubmitButton() {
         await this.click(ElementsPageObject.SUBMIT_BUTTON);
     }
