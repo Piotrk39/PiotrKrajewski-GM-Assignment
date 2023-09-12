@@ -20,7 +20,7 @@ export class FormsPageObject {
     static MONTH_PICKER = "//select[@class='react-datepicker__month-select']";
     static YEAR_PICKER = "//select[@class='react-datepicker__year-select']";
     
-    static generateDay(day: Number) {
+    static generateDay(day: number) {
         return `//div[@role="option" and text()='${day}']`;
     }
 

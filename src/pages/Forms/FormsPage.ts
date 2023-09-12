@@ -14,7 +14,7 @@ export class FormsPage extends NavigationBase {
           })
     }
 
-    async fillInStudentForm(firstName: string, lastName: string, email: string, phone: string, month: string, year: string, day: Number, subject: string, address: string, state: string, city: string) {
+    async fillInStudentForm(firstName: string, lastName: string, email: string, phone: string, month: string, year: string, day: number, subject: string, address: string, state: string, city: string) {
         await this.type(FormsPageObject.FIRST_NAME, firstName);
         await this.type(FormsPageObject.LAST_NAME, lastName);
         await this.type(FormsPageObject.EMAIL, email);
@@ -30,7 +30,7 @@ export class FormsPage extends NavigationBase {
         await this.page.keyboard.press('Enter');
     }
 
-    async pickDateOfBirth(month: string, year: string, day: Number) {
+    async pickDateOfBirth(month: string, year: string, day: number) {
         await this.click(FormsPageObject.DATE_OF_BIRTH_INPUT);
         await this.selectDropdownList(FormsPageObject.MONTH_PICKER, month);
         await this.selectDropdownList(FormsPageObject.YEAR_PICKER, year);
