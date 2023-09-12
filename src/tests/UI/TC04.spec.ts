@@ -16,7 +16,7 @@ test('Verify the progress bar', async ({ page, baseURL }) => {
     await test.step('Run progress bar and validate it reached 100%', async () => {
       console.log('Running progress bar...');
       await widgets.startProgressBar();
-      console.log('Validate progress bar loaded 100%...');
+      console.log('Validating progress bar loaded 100%...');
       await widgets.validateProgressBarLoadedByText('100%');
       console.log('Progress Bar loaded to 100%');
     });

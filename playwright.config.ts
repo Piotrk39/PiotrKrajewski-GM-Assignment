@@ -17,7 +17,7 @@ const config = {
           timeout: 10000
       },
       launchOptions: {
-          slowMo: 250,
+        //   slowMo: 250,
           downloadsPath: 'resources/downloads',
           args: ['--start-maximized']
       },
