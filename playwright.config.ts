@@ -4,6 +4,7 @@ const { devices } = require('@playwright/test');
 const config = {
   workers: 1,
   outputDir: './test-results',
+  tesDir: 'tests/UI',
   timeout: 300000,
   use: {
       video:'on-first-retry',
