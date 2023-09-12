@@ -47,7 +47,7 @@ export class ElementsPage extends NavigationBase {
         await this.type(ElementsPageObject.SEARCH_BOX, query);
     }
 
-    async verifyRow(rowIndex, { firstName, lastName, email, age, salary, department}) {
+    async verifyRow(rowIndex: number, { firstName, lastName, email, age, salary, department}) {
         if (firstName !== undefined) {
             await this.waitForElementToContainText(ElementsPageObject.getCellValue(rowIndex, 1), firstName);
         }

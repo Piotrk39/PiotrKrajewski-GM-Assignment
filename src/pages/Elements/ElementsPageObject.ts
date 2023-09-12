@@ -17,7 +17,7 @@ export class ElementsPageObject {
     static SEARCH_BOX = "#searchBox";
     static EDIT_BUTTON = "//span[@title='Edit']";
     
-    static getCellValue(row, column) {
+    static getCellValue(row: number, column: number) {
         return `(//div[@role="rowgroup"]/div[1]/div[${column}])[${row}]`;
     }
 

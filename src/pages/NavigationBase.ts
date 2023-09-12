@@ -15,15 +15,6 @@ export class NavigationBase {
     }
   }
 
-  async pressCmdandMinus() {
-    await this.page.keyboard.down('Meta');
-    await this.page.keyboard.press('-');
-    await this.page.keyboard.press('-');
-    await this.page.keyboard.press('-');
-    await this.page.keyboard.press('-');
-    await this.page.keyboard.press('-');
-  }
-
   async hover(locator: string) {
     await this.page.hover(locator);
   }
@@ -106,7 +97,7 @@ export class NavigationBase {
     }
   }
 
-  async isElementPresentByText(locator, text) {
+  async isElementPresentByText(locator: string, text: string) {
     const textContent = await this.getElementText(locator);
 
     if(textContent === text) {
@@ -139,7 +130,7 @@ export class NavigationBase {
     console.log("Image is broken!");
   }
 
-  async dragAndDrop(locatorDrag, locatorDrop) {
+  async dragAndDrop(locatorDrag: string, locatorDrop: string) {
     await this.page.locator(locatorDrag).dragTo(this.page.locator(locatorDrop));
   }
 }
