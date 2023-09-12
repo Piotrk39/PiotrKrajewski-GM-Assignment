@@ -64,19 +64,55 @@ test('Create, Add and Remove a book from the library', async ({ request }) => {
     
       try {
         const responseBody = JSON.parse(await response.text());
-        console.log(responseBody);
+        console.log(responseBody.books[0].isbn);
+        expect(responseBody.books[0].isbn).toBe('9781449325862');
+        console.log(responseBody.books[1].isbn);
+        expect(responseBody.books[1].isbn).toBe('9781449331818');
       } catch (error) {
         console.error("Error parsing JSON response:", error);
       }
     });
 
-    // await test.step('Get book list', async () => {
-    //   console.log('Getting books...');
-    //   const response = await request.get(`${baseURL}/BookStore/v1/Books`);
-    //   expect(response.status()).toBe(200);
+    await test.step('Remove a book from the users list', async () => {
+      console.log('Removing book...');
+      const response = await request.delete(`${baseURL}/BookStore/v1/Book`, {
+        data: {
+          "isbn": "9781449331818",
+          "userId": userID
+        },
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          }
+        });
+    
+        try {
+          const responseBody = await response.text();
       
-    //   const responseBody = JSON.parse(await response.text());
+          if (responseBody) {
+            const parsedResponse = JSON.parse(responseBody);
+            console.log(parsedResponse);
+          } else {
+            console.log('Response is empty or does not contain valid JSON.');
+          }
+        } catch (error) {
+          console.error("Error parsing JSON response:", error);
+        }
+    });
 
-    //   console.log(responseBody)
-    // });
+    await test.step('Validate book was removed from the list', async () => {
+      console.log('Checking book...');
+      const response = await request.get(`${baseURL}/Account/v1/User/${userID}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      });
+    
+      try {
+        const responseBody = JSON.parse(await response.text());
+        const numberOfBooks = responseBody.books.length;
+        expect(numberOfBooks).toBe(1);
+      } catch (error) {
+        console.error("Error parsing JSON response:", error);
+      }
+    });
 });
